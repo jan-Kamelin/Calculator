@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Scientific Calculator</title>
+</head>
+
+<body>
+    <h2>Scientific Calculator</h2>
+
+    <form method="POST" action="calculator.php">
+        Number 1: <input type="number" step="any" name="num1" required><br><br>
+
+        <label for="operator">Operator:</label>
+        <select name="operator" required>
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+            <option value="sqrt">Square Root</option>
+            <option value="power">Power</option>
+        </select><br><br>
+
+        <div id="num2-container">
+            Number 2: <input type="number" step="any" name="num2" required><br><br>
+        </div>
+
+        <input type="submit" name="submit" value="Calculate"><br><br>
+
+        Result: <?php echo isset($result) ? $result : ""; ?>
+    </form>
+
+    <script>
+        // Show/hide the second number input based on the selected operator
+        const operatorSelect = document.querySelector('select[name="operator"]');
+        const num2Container = document.getElementById('num2-container');
+
+        operatorSelect.addEventListener('change', function () {
+            const selectedOperator = this.value;
+            if (selectedOperator === 'sqrt') {
+                num2Container.style.display = 'none';
+            } else {
+                num2Container.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>
